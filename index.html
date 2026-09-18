@@ -309,6 +309,8 @@
                 if (!text) return;
 
                 socket.emit('sendmeasseage', text)
+                input.value = '';
+                input.focus();
             }
 
             sendBtn.addEventListener('click', sendMessage);
@@ -317,8 +319,6 @@
                 if (e.key === 'Enter') {
                     e.preventDefault();
                     sendMessage();
-                    input.value = '';
-                    input.focus();
                 }
             });
 
@@ -353,9 +353,6 @@
 
                 e.preventDefault();
                 e.stopPropagation();
-
-                input.value = '';
-                input.focus();
             }, true);
 
             window.addEventListener('load', scrollToBottom);
