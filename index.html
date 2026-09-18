@@ -308,7 +308,7 @@
                 const text = input.value.trim();
                 if (!text) return;
 
-                // const node = createMessage(text);
+                const node = createMessage(text);
                 socket.emit('sendmeasseage', text)
                 // сработает анимация fade-in-up
                 node.classList.add('msg-appear');
