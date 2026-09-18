@@ -316,9 +316,9 @@
             input.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
+                    sendMessage();
                     input.value = '';
                     input.focus();
-                    sendMessage();
                 }
             });
 
