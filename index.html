@@ -308,17 +308,23 @@
                 const text = input.value.trim();
                 if (!text) return;
 
-                const node = createMessage(text);
                 socket.emit('sendmeasseage', text)
+
+                socket.on('createmeassage', (data) => {
+                    console.log(data)
+    
+                    const node = createMessage(text);
+                    node.classList.add('msg-appear');
+
+                    node.addEventListener('animationend', () => {
+                        node.classList.remove('msg-appear');
+                    }, { once: true });
+                    
+                    chatMiddle.appendChild(node);
+                });
                 // сработает анимация fade-in-up
-                node.classList.add('msg-appear');
 
                 // чтобы анимация не проигрывалась повторно (например, при resize)
-                node.addEventListener('animationend', () => {
-                    node.classList.remove('msg-appear');
-                }, { once: true });
-
-                chatMiddle.appendChild(node);
 
                 input.value = '';
                 input.focus();
@@ -327,11 +333,6 @@
             }
 
             sendBtn.addEventListener('click', sendMessage);
-
-            socket.on('createmeassage', (data) => {
-                console.log(data)
-                // createMessage(data)
-            })
 
             input.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter') {
