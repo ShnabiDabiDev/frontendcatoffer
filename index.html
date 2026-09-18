@@ -311,15 +311,13 @@
                 socket.emit('sendmeasseage', text)
 
                 socket.on('createmeassage', (data) => {
-                    console.log(data)
-    
-                    const node = createMessage(text);
+                    const node = createMessage(data.text);
                     node.classList.add('msg-appear');
 
                     node.addEventListener('animationend', () => {
                         node.classList.remove('msg-appear');
                     }, { once: true });
-                    
+
                     chatMiddle.appendChild(node);
                 });
                 // сработает анимация fade-in-up
