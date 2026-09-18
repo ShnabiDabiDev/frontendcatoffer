@@ -135,6 +135,19 @@
 
     <div class="chatframe"></div>
 
+    <script src="https://cdn.socket.io/4.8.3/socket.io.min.js"></script>
+    
+    <script>
+        const socket = io('backendcatoffer-production.up.railway.app', {
+            transports: ['websocket', 'polling'],
+        });
+
+        socket.on('hifromserver', (data) => {
+            console.log('Received from server:', data);
+        });
+
+    </script>
+
     <script>
         (function () {
     const RIPPLE_DURATION = 200;
