@@ -329,7 +329,8 @@
             sendBtn.addEventListener('click', sendMessage);
 
             socket.on('createmeassage', (data) => {
-                createMessage(data.text)
+                console.log(data)
+                createMessage(data)
             })
 
             input.addEventListener('keydown', function (e) {
