@@ -316,6 +316,8 @@
             input.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
+                    input.value = '';
+                    input.focus();
                     sendMessage();
                 }
             });
@@ -331,8 +333,6 @@
                 }, { once: true });
 
                 chatMiddle.appendChild(node);
-                input.value = '';
-                input.focus();
 
                 requestAnimationFrame(scrollToBottom);
             });
@@ -353,6 +353,8 @@
 
                 e.preventDefault();
                 e.stopPropagation();
+
+                input.value = '';
                 input.focus();
             }, true);
 
