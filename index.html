@@ -136,22 +136,11 @@
     <div class="chatframe"></div>
 
     <script src="https://cdn.socket.io/4.8.3/socket.io.min.js"></script>
-    
-    <script>
-        const socket = io('backendcatoffer-production.up.railway.app', {
-            transports: ['websocket', 'polling'],
-        });
-
-        socket.on('hifromserver', (data) => {
-            console.log('Received from server:', data);
-        });
-
-    </script>
 
     <script>
         (function () {
-    const RIPPLE_DURATION = 200;
-    const FADE_DURATION = 360;
+            const RIPPLE_DURATION = 200;
+            const FADE_DURATION = 360;
 
     function createRipple(button, event) {
         // Удаляем предыдущий эффект
@@ -264,106 +253,113 @@
     
     <script>
         (function () {
-    const chatMiddle = document.querySelector('.chatmiddle');
-    const input     = document.querySelector('.textchat');
-    const sendBtn    = document.querySelector('.buttonarrow');
+            const socket = io('backendcatoffer-production.up.railway.app', {
+                transports: ['websocket', 'polling'],
+            });
+            const chatMiddle = document.querySelector('.chatmiddle');
+            const input     = document.querySelector('.textchat');
+            const sendBtn    = document.querySelector('.buttonarrow');
 
-    if (!chatMiddle || !input || !sendBtn) {
-        console.error('Чат: не найдены элементы', { chatMiddle, input, sendBtn });
-        return;
-    }
+            if (!chatMiddle || !input || !sendBtn) {
+                console.error('Чат: не найдены элементы', { chatMiddle, input, sendBtn });
+                return;
+            }
 
-    function nowTime() {
-        const d = new Date();
-        return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
-    }
+            function nowTime() {
+                const d = new Date();
+                return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+            }
 
-    function scrollToBottom() {
-        chatMiddle.scrollTop = chatMiddle.scrollHeight;
-    }
+            function scrollToBottom() {
+                chatMiddle.scrollTop = chatMiddle.scrollHeight;
+            }
 
-    function createMessage(text, name = 'You', avatarSrc = 'icons/Avaa.svg') {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'meassagewrapper';
+            function createMessage(text, name = 'You', avatarSrc = 'icons/Avaa.svg') {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'meassagewrapper';
 
-        const avatar = document.createElement('img');
-        avatar.className = 'Avatarmeassage';
-        avatar.src = avatarSrc;
-        avatar.alt = '';
+                const avatar = document.createElement('img');
+                avatar.className = 'Avatarmeassage';
+                avatar.src = avatarSrc;
+                avatar.alt = '';
 
-        const nameTime = document.createElement('div');
-        nameTime.className = 'name-time';
+                const nameTime = document.createElement('div');
+                nameTime.className = 'name-time';
 
-        const chatName = document.createElement('div');
-        chatName.className = 'chat-name';
-        chatName.textContent = name;
+                const chatName = document.createElement('div');
+                chatName.className = 'chat-name';
+                chatName.textContent = name;
 
-        const time = document.createElement('div');
-        time.className = 'meassagetime';
-        time.textContent = nowTime();
+                const time = document.createElement('div');
+                time.className = 'meassagetime';
+                time.textContent = nowTime();
 
-        nameTime.append(chatName, time);
+                nameTime.append(chatName, time);
 
-        const message = document.createElement('div');
-        message.className = 'usermeassage';
-        message.textContent = text;
+                const message = document.createElement('div');
+                message.className = 'usermeassage';
+                message.textContent = text;
 
-        wrapper.append(avatar, nameTime, message);
-        return wrapper;
-    }
+                wrapper.append(avatar, nameTime, message);
+                return wrapper;
+            }
 
-    function sendMessage() {
-        const text = input.value.trim();
-        if (!text) return;
+            function sendMessage() {
+                const text = input.value.trim();
+                if (!text) return;
 
-        const node = createMessage(text);
+                // const node = createMessage(text);
+                socket.emit('sendmeasseage', text)
+                // сработает анимация fade-in-up
+                node.classList.add('msg-appear');
 
-        // сработает анимация fade-in-up
-        node.classList.add('msg-appear');
+                // чтобы анимация не проигрывалась повторно (например, при resize)
+                node.addEventListener('animationend', () => {
+                    node.classList.remove('msg-appear');
+                }, { once: true });
 
-        // чтобы анимация не проигрывалась повторно (например, при resize)
-        node.addEventListener('animationend', () => {
-            node.classList.remove('msg-appear');
-        }, { once: true });
+                chatMiddle.appendChild(node);
 
-        chatMiddle.appendChild(node);
+                input.value = '';
+                input.focus();
 
-        input.value = '';
-        input.focus();
+                requestAnimationFrame(scrollToBottom);
+            }
 
-        requestAnimationFrame(scrollToBottom);
-    }
+            sendBtn.addEventListener('click', sendMessage);
 
-    sendBtn.addEventListener('click', sendMessage);
+            socket.on('createmeassage', (data) => {
+                createMessage(data.text)
+            })
 
-    input.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            sendMessage();
-        }
-    });
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
 
-    /* ================= БИНД НА "/" ================= */
-    document.addEventListener('keydown', function (e) {
-        const isSlash = e.key === '/' || e.code === 'Slash' || e.keyCode === 191;
-        if (!isSlash) return;
+            /* ================= БИНД НА "/" ================= */
+            document.addEventListener('keydown', function (e) {
+                const isSlash = e.key === '/' || e.code === 'Slash' || e.keyCode === 191;
+                if (!isSlash) return;
 
-        const active = document.activeElement;
+                const active = document.activeElement;
 
-        if (active === input) return;
-        if (active && (
-            active.tagName === 'INPUT' ||
-            active.tagName === 'TEXTAREA' ||
-            active.isContentEditable
-        )) return;
+                if (active === input) return;
+                if (active && (
+                    active.tagName === 'INPUT' ||
+                    active.tagName === 'TEXTAREA' ||
+                    active.isContentEditable
+                )) return;
 
-        e.preventDefault();
-        e.stopPropagation();
-        input.focus();
-    }, true);
+                e.preventDefault();
+                e.stopPropagation();
+                input.focus();
+            }, true);
 
-    window.addEventListener('load', scrollToBottom);
-})();
+            window.addEventListener('load', scrollToBottom);
+    })();
     </script>
 </body>
 </html>
