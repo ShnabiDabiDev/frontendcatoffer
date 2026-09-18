@@ -309,27 +309,6 @@
                 if (!text) return;
 
                 socket.emit('sendmeasseage', text)
-
-                socket.on('createmeassage', (data) => {
-                    console.log(data)
-                    console.log(data.text)
-                    const node = createMessage(data.text);
-                    node.classList.add('msg-appear');
-
-                    node.addEventListener('animationend', () => {
-                        node.classList.remove('msg-appear');
-                    }, { once: true });
-
-                    chatMiddle.appendChild(node);
-                });
-                // сработает анимация fade-in-up
-
-                // чтобы анимация не проигрывалась повторно (например, при resize)
-
-                input.value = '';
-                input.focus();
-
-                requestAnimationFrame(scrollToBottom);
             }
 
             sendBtn.addEventListener('click', sendMessage);
@@ -339,6 +318,23 @@
                     e.preventDefault();
                     sendMessage();
                 }
+            });
+
+            socket.on('createmeassage', (data) => {
+                console.log(data)
+                console.log(data.usertext)
+                const node = createMessage(data.usertext);
+                node.classList.add('msg-appear');
+
+                node.addEventListener('animationend', () => {
+                    node.classList.remove('msg-appear');
+                }, { once: true });
+
+                chatMiddle.appendChild(node);
+                input.value = '';
+                input.focus();
+
+                requestAnimationFrame(scrollToBottom);
             });
 
             /* ================= БИНД НА "/" ================= */
