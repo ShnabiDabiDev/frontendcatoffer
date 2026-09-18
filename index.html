@@ -311,6 +311,8 @@
                 socket.emit('sendmeasseage', text)
 
                 socket.on('createmeassage', (data) => {
+                    console.log(data)
+                    console.log(data.text)
                     const node = createMessage(data.text);
                     node.classList.add('msg-appear');
 
