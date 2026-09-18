@@ -1,0 +1,356 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Manrope:wght@200..800&family=Varta:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="head-div"></div>
+    <div class="ripple-effect"></div>
+
+    <div class="lin"></div>
+    <div class="cats">
+        <img class="cat" src="./icons/cat (1).svg" alt="">
+        <div class="my">My cats</div>
+    </div>
+
+    <div class="home">
+        <img class="ho" src="./icons/home.svg" alt="">
+    </div>
+    <div class="te">Home</div>
+    <div class="acc">
+        <img class="unn" src="./icons/unfold_more_24dp_606.svg" alt="">
+        <div class="gmail">Leonidka011@gma....</div>
+    </div>
+    <img class="cant" src="./icons/cant.svg" alt="">
+    <div class="feed">
+        <img class="tip" src="./icons/tips-one.svg" alt="">
+        <div class="fee" >Feedback</div>
+    </div>
+    <img class="plotno" src="./icons/Rectangle_126 (1).svg" alt="">
+    <div class="plot">
+        <img class="sha" src="./icons/SHAt.svg" alt="">
+        <img class="twsha" src="./icons/Rectangle_76.svg" alt="">
+        <img class="thrsha" src="./icons/Rectangle_75.svg" alt="">
+        <img class="forsha" src="./icons/Rectangle_77.svg" alt="">
+        <div class="wor" >World map</div>
+        <div class="wr" >29D-24H-59M</div>
+        <img class="brow" src="./icons/Browny.svg" alt="">
+        <img class="eli" src="./icons/Ellipse_66.svg" alt="">
+    </div>
+    <img class="mo" src="./icons/Mouse.svg" alt="">
+    <img class="el2" src="./icons/Ellipse_66.svg" alt="">
+    <img class="grop" src="./icons/Group_12.svg" alt="">
+    <img class="meow" src="./icons/Meow.svg" alt="">
+    <img class="el3" src="./icons/Ellipse_66.svg" alt="">
+    <img class="belya" src="./icons/bed2.svg" alt="">
+    <img class="el4" src="./icons/Ellipse_66.svg" alt="">
+    <img class="r12" src="./icons/Rectangle_1255.svg" alt="">
+    <div class="panel" ></div>
+
+    <div class="panel2">
+        <div class="butt2" >
+            <img class="ava2" src="./icons/Avaa.svg" alt="">
+            <div class="nick2" >LevanaJeckiJackson</div>
+            <div class="onli2"></div>
+        </div>
+
+        <div class="butt2" >
+            <img class="ava2" src="./icons/Avaa.svg" alt="">
+            <div class="nick2" >LevanaJeckiJackson</div>
+            <div class="onli2"></div>
+        </div>
+
+        <div class="butt2" >
+            <img class="ava2" src="./icons/Avaa.svg" alt="">
+            <div class="nick2" >LevanaJeckiJackson</div>
+            <div class="onli2"></div>
+        </div>
+
+        <div class="butt2" >
+            <img class="ava2" src="./icons/Avaa.svg" alt="">
+            <div class="nick2" >LevanaJeckiJackson</div>
+            <div class="onli2"></div>
+        </div>
+    </div>
+
+    <div class="main-dialoge">
+        <div class="dialogewrapper">
+            <img class="dialoge-ava" src="icons/Avaa.svg" alt="">
+            <div class="name-dialoge">LevanaJeckiJackson</div>
+            <div class="offlineindi-background">
+                <div class="offlineindicator">offline</div>
+            </div>
+        </div>
+    </div>
+
+    <div></div>
+
+    <div class="write-dialoge"></div>
+
+    <img class="profile-img" src="icons/person_24dp_606060_F.svg" alt="">
+    <div class="profile"></div>
+
+    <img class="support-img" src="icons/help_24dp_606060_FIL.svg" alt="">
+    <div class="support-span">Support</div>
+    <div class="support"></div>
+
+    <div class="user-slash"></div>
+
+    <img class="createcat-img" src="icons/add_24dp_FFFFFF_FILL.svg" alt="">
+    <div class="createcat-span">Create Cat</div>
+    <div class="create-cat"></div>
+
+    <div class="faq-span">FAQ</div>
+    <div class="faq"></div>
+
+    <div class="feedback"></div>
+    <div class="my-cats"></div>
+
+    <img class="chat-background" src="icons/Rectangle_125.svg" alt="">
+
+    <div class="chathead"></div>
+    <img class="comment" src="icons/comment.svg" alt="">
+    <div class="chatText">Chat</div>
+    <div class="background-players"></div>
+    <img class="personplayer" src="icons/person_24dp_FFFFFF_F.svg" alt="">
+    <div class="indicator">125</div>
+    <div class="buttonreport">
+        <img class="reportimg" src="icons/report_24dp_606060_F.svg" alt="">
+    </div>
+
+    <div class="chatmiddle">
+        
+    </div>
+
+    <div class="chatbottom"></div>
+    <input class="textchat" type="text" placeholder="Write meassage... bind(/)">
+    <div class="buttonarrow">
+        <img class="arrow" src="icons/arrow_forward_24dp_6.svg" alt="">
+    </div>
+
+    <div class="chatframe"></div>
+
+    <script>
+        (function () {
+    const RIPPLE_DURATION = 200;
+    const FADE_DURATION = 360;
+
+    function createRipple(button, event) {
+        // Удаляем предыдущий эффект
+        button.querySelectorAll('.ripple-fill').forEach(ripple => {
+            ripple.remove();
+        });
+
+        const rect = button.getBoundingClientRect();
+
+        // Точка клика внутри кнопки
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        // Находим максимальное расстояние от точки клика
+        // до углов кнопки
+        const distance = Math.max(
+            Math.hypot(x, y),
+            Math.hypot(rect.width - x, y),
+            Math.hypot(x, rect.height - y),
+            Math.hypot(rect.width - x, rect.height - y)
+        );
+
+        const size = distance * 2;
+
+        // Создаём ripple
+        const ripple = document.createElement('span');
+
+        ripple.className = 'ripple-fill';
+
+        ripple.style.width = `${size}px`;
+        ripple.style.height = `${size}px`;
+
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+
+        ripple.style.opacity = '0.16';
+
+        ripple.style.transform =
+            'translate(-50%, -50%) scale(0.02)';
+
+        button.appendChild(ripple);
+
+        ripple.offsetWidth;
+
+        // Расширение
+        ripple.style.transition =
+            `transform ${RIPPLE_DURATION}ms ease-in`;
+
+        ripple.style.transform =
+            'translate(-50%, -50%) scale(1)';
+        button.classList.add('add')
+        setTimeout(() => {
+            ripple.style.transition =
+                `opacity ${FADE_DURATION}ms ease-out`;
+
+            ripple.style.opacity = '0';
+
+            setTimeout(() => {
+                ripple.remove();
+            }, FADE_DURATION);
+
+        }, RIPPLE_DURATION);
+    }
+
+
+    // =========================
+    // FILTERS
+    // =========================
+
+    const faq = document.querySelector('.faq');
+
+    if (faq) {
+        faq.addEventListener('pointerdown', function (event) {
+            createRipple(this, event);
+        });
+    }
+
+
+    // =========================
+    // FEED
+    // =========================
+
+    const feed = document.querySelector('.feed');
+
+    if (feed) {
+        feed.addEventListener('pointerdown', function (event) {
+            createRipple(this, event);
+        });
+    }
+
+    const acc = document.querySelector('.acc');
+
+    if (acc) {
+        acc.addEventListener('pointerdown', function (event) {
+            createRipple(this, event);
+        });
+    }
+
+    const home = document.querySelector('.home');
+
+    if (home) {
+        home.addEventListener('pointerdown', function (event) {
+            createRipple(this, event);
+        });
+    }
+
+})();
+
+    </script>
+    
+    <script>
+        (function () {
+    const chatMiddle = document.querySelector('.chatmiddle');
+    const input     = document.querySelector('.textchat');
+    const sendBtn    = document.querySelector('.buttonarrow');
+
+    if (!chatMiddle || !input || !sendBtn) {
+        console.error('Чат: не найдены элементы', { chatMiddle, input, sendBtn });
+        return;
+    }
+
+    function nowTime() {
+        const d = new Date();
+        return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+    }
+
+    function scrollToBottom() {
+        chatMiddle.scrollTop = chatMiddle.scrollHeight;
+    }
+
+    function createMessage(text, name = 'You', avatarSrc = 'icons/Avaa.svg') {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'meassagewrapper';
+
+        const avatar = document.createElement('img');
+        avatar.className = 'Avatarmeassage';
+        avatar.src = avatarSrc;
+        avatar.alt = '';
+
+        const nameTime = document.createElement('div');
+        nameTime.className = 'name-time';
+
+        const chatName = document.createElement('div');
+        chatName.className = 'chat-name';
+        chatName.textContent = name;
+
+        const time = document.createElement('div');
+        time.className = 'meassagetime';
+        time.textContent = nowTime();
+
+        nameTime.append(chatName, time);
+
+        const message = document.createElement('div');
+        message.className = 'usermeassage';
+        message.textContent = text;
+
+        wrapper.append(avatar, nameTime, message);
+        return wrapper;
+    }
+
+    function sendMessage() {
+        const text = input.value.trim();
+        if (!text) return;
+
+        const node = createMessage(text);
+
+        // сработает анимация fade-in-up
+        node.classList.add('msg-appear');
+
+        // чтобы анимация не проигрывалась повторно (например, при resize)
+        node.addEventListener('animationend', () => {
+            node.classList.remove('msg-appear');
+        }, { once: true });
+
+        chatMiddle.appendChild(node);
+
+        input.value = '';
+        input.focus();
+
+        requestAnimationFrame(scrollToBottom);
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+
+    input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+
+    /* ================= БИНД НА "/" ================= */
+    document.addEventListener('keydown', function (e) {
+        const isSlash = e.key === '/' || e.code === 'Slash' || e.keyCode === 191;
+        if (!isSlash) return;
+
+        const active = document.activeElement;
+
+        if (active === input) return;
+        if (active && (
+            active.tagName === 'INPUT' ||
+            active.tagName === 'TEXTAREA' ||
+            active.isContentEditable
+        )) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+        input.focus();
+    }, true);
+
+    window.addEventListener('load', scrollToBottom);
+})();
+    </script>
+</body>
+</html>
